@@ -17,7 +17,7 @@
 #'   - `pair`: Character, trading pair.
 #'   - `open_interest`: Numeric, open interest in base currency.
 #'   
-#' @examples
+#' @examplesIf interactive()
 #' # Get the open interest data for BTCUSDT
 #' binance_last_open_interest(pair = "BTCUSDT", api = "fapi")
 #' 

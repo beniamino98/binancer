@@ -11,7 +11,7 @@
 #' @details The IP weight for this API call is 1 for all the APIs.
 #' @return A logical value. It is `TRUE` if the connection was successful, otherwise it is `FALSE`.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' # Test connection to spot api
 #' binance_ping("spot")
 #' # Test connection to futures usd-m api
@@ -49,5 +49,4 @@ binance_ping <- function(api, quiet = FALSE){
   attr(response, "ip_weight") <- 1
   return(response)
 }
-
 

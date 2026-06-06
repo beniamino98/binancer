@@ -27,16 +27,17 @@
 #'
 #' @examples 
 #'  
-#' # Generate an order book for BTCUSDT 
-#' depth_data <- binance_depth("BTCUSDT", api = "spot")
-#' depth <- 0.01
-#' best_ask <- min(depth_data[depth_data$side == "ASK",]$price)
-#' best_bid <- max(depth_data[depth_data$side == "BID",]$price)
+#' # Generate an order book from a local depth snapshot.
+#' depth_data <- data.frame(
+#'   price = c(100, 99, 101, 102),
+#'   quantity = c(1.5, 2, 1, 0.5),
+#'   side = c("BID", "BID", "ASK", "ASK")
+#' )
 #' OrderBook(data = depth_data, 
-#'           min_price = best_bid*(1 - depth), 
-#'           max_price = best_ask*(1 + depth), 
-#'           levels = 10, 
-#'           trades = NULL, 
+#'           min_price = 99,
+#'           max_price = 103,
+#'           levels = 5,
+#'           trades = NULL,
 #'           as_datatable = FALSE)
 #'
 #' @export
@@ -46,6 +47,19 @@
 
 OrderBook <- function(data = NULL, min_price = NULL, max_price = NULL, levels = NULL, trades = NULL, as_datatable = FALSE){
   
+  if (!is.null(data) && !all(c("price", "quantity", "side") %in% names(data))) {
+    cli::cli_abort("The {.arg data} argument must contain {.field price}, {.field quantity}, and {.field side} columns.")
+  }
+  if (!is.null(trades) && !all(c("price", "quantity", "side") %in% names(trades))) {
+    cli::cli_abort("The {.arg trades} argument must contain {.field price}, {.field quantity}, and {.field side} columns.")
+  }
+  if (!is.null(levels) && (!is.numeric(levels) || length(levels) != 1 || is.na(levels) || levels < 2)) {
+    cli::cli_abort("The {.arg levels} argument must be a numeric scalar greater than or equal to 2.")
+  }
+  if (!is.logical(as_datatable) || length(as_datatable) != 1 || is.na(as_datatable)) {
+    cli::cli_abort("The {.arg as_datatable} argument must be `TRUE` or `FALSE`.")
+  }
+
   # Check "min_price" and "max_price" arguments 
   if (is.null(data)){
     min_price <- ifelse(is.null(min_price), 1, as.numeric(min_price))
@@ -53,6 +67,9 @@ OrderBook <- function(data = NULL, min_price = NULL, max_price = NULL, levels = 
   } else {
     min_price <- ifelse(is.null(min_price), min(data$price, na.rm = TRUE), as.numeric(min_price))
     max_price <- ifelse(is.null(max_price), max(data$price, na.rm = TRUE), as.numeric(max_price))
+  }
+  if (is.na(min_price) || is.na(max_price) || min_price >= max_price) {
+    cli::cli_abort("The price range must contain numeric {.arg min_price} and {.arg max_price} values with `min_price < max_price`.")
   }
   
   # Check "levels" argument 
@@ -174,4 +191,3 @@ OrderBook <- function(data = NULL, min_price = NULL, max_price = NULL, levels = 
   }
   return(order_book)
 }
-

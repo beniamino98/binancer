@@ -34,6 +34,7 @@ A \code{\link[tibble]{tibble}} with 4 columns:
 Get the current open interest data for a trading pair.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get the open interest data for BTCUSDT
 binance_last_open_interest(pair = "BTCUSDT", api = "fapi")
 
@@ -42,6 +43,6 @@ binance_last_open_interest(pair = "BTCUSD_PERP", api = "dapi")
 
 # Get the open interest data for options on BTC
 binance_last_open_interest(pair = "BTC", api = "eapi", expiration = Sys.Date() + 1)
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

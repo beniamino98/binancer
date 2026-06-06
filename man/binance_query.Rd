@@ -28,7 +28,7 @@ binance_query(
 
 \item{query}{Named list. Query parameters for the API call, \code{NULL} or \code{NA} elements will be excluded.}
 
-\item{method}{Character. A method between \code{"\link[httr]{GET}"}, \code{"\link[httr]{POST}"} and \code{"\link[httr]{DELETE}"}.}
+\item{method}{Character. A method between \code{"\link[httr]{GET}"}, \code{"\link[httr]{POST}"}, \code{"\link[httr]{PUT}"} and \code{"\link[httr]{DELETE}"}.}
 
 \item{sign}{Logical. Default is \code{FALSE}. \code{TRUE} if signature is required.}
 
@@ -51,6 +51,7 @@ An R object parsed as character. See more on \code{\link[httr]{content}}
 Execute a query to Binance REST API.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Execute a call to spot API with base path
 binance_query(api = "spot", 
               path = "time", 
@@ -62,6 +63,6 @@ binance_query(api = "spot",
               path = c("api", "v3", "time"), 
               query = NULL,
               use_base_path = FALSE)
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{utils}

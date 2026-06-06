@@ -19,7 +19,7 @@
 #'   - `price`: Numeric, price level.
 #'   - `quantity`: Numeric, quantity for each price level.
 #'               
-#' @examples
+#' @examplesIf interactive()
 #' # Get the order book for BTCUSDT
 #' binance_depth(pair = "BTCUSDT", api = "spot")
 #' binance_depth(pair = "BTCUSDT", api = "fapi")

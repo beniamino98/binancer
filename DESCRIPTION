@@ -1,16 +1,19 @@
 Package: binancer
 Type: Package
-Title: Wrapper for Binance REST and Websocket API in R. 
+Title: Retrieve Cryptocurrency Data from Binance
 Version: 0.1.0
-Author: Beniamino Sartini
-Maintainer: Beniamino Sartini <beniaminosartini@gmail.com>
-Description: Provides a comprehensive R interface for the Binance REST and WebSocket API.
+Authors@R: person("Beniamino", "Sartini", email = "beniaminosartini@gmail.com", role = c("aut", "cre"))
+Description: Provides tools for retrieving cryptocurrency market data from the
+    Binance REST API, Binance Vision public data archive, and Binance WebSocket
+    streams. It includes helpers for price tickers, order books, trades,
+    candlestick data, futures statistics, and authenticated account or order
+    endpoints when user-supplied credentials are available.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 Depends: R (>= 3.5.0)
 Imports: 
     cli (>= 3.4.0),
+    DT,
     dplyr (>= 1.1.3),
     httr (>= 1.4.4),
     jsonlite (>= 1.8.4),
@@ -19,18 +22,16 @@ Imports:
     readr (>= 2.1.2),
     stringr (>= 1.5.0),
     R6 (>= 2.5.1),
+    tibble,
     digest (>= 0.6.27),
     utils,
     stats,
-    websocket (>= 1.4.1)
+    websocket (>= 1.4.1),
+    xts (>= 0.12.2)
 Suggests: 
-    DT,
-    knitr,
-    rmarkdown,
-    xts (>= 0.12.2),
-    testthat (>= 2.1.0)
-RoxygenNote: 7.3.2
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
-URL: http://www.cryptoverser.org
+URL: https://github.com/beniamino98/binancer
 BugReports: https://github.com/beniamino98/binancer/issues
-VignetteBuilder: knitr

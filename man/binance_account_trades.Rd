@@ -28,4 +28,10 @@ A \code{\link[tibble]{tibble}}.
 \description{
 Get trades for a specific account and symbol.
 }
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+binance_credentials("api-key", "api-secret")
+binance_account_trades("BTCUSDT", limit = 100)
+\dontshow{\}) # examplesIf}
+}
 \keyword{AccountEndpoints}

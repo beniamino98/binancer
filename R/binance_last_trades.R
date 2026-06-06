@@ -19,7 +19,7 @@
 #'   - `side`: Character, trade side. Can be `"BUY"` or `"SELL"`.
 #'   - `trade_id`: Integer, trade id.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' # Get last 1000 trades for BTCUSDT
 #' binance_last_trades(pair = "BTCUSDT", api = "spot")
 #' binance_last_trades(pair = "BTCUSDT", api = "fapi")

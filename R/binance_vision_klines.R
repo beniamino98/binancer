@@ -20,7 +20,7 @@
 #'
 #' @return A \code{\link[tibble]{tibble}}.
 #' 
-#' @examples 
+#' @examplesIf interactive()
 #' 
 #' pair <- "BTCUSDT"
 #' api <- "spot"

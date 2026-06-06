@@ -3,11 +3,26 @@
 \name{binanceWebSocket}
 \alias{binanceWebSocket}
 \title{R6 Class for Binance Web Socket}
+\value{
+An R6 generator for \code{binanceWebSocket} objects.
+}
 \description{
 Binance web socket description
 }
 \details{
-Binance web socket details
+Creates a WebSocket client for Binance stream subscriptions.
+}
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+ws <- binanceWebSocket$new(
+  pair = "BTCUSDT",
+  api = "spot",
+  subscription = "kline",
+  interval = "1m"
+)
+ws$connect()
+ws$close()
+\dontshow{\}) # examplesIf}
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
@@ -53,6 +68,8 @@ Initialize a \code{binanceWebSocket} object.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{pair}}{Character. Trading pair, e.g. \code{"BTCUSDT"}.}
+
+\item{\code{api}}{Character. Reference API. Available options are \code{"spot"} and \code{"fapi"}.}
 
 \item{\code{subscription}}{type of subscription, can be \code{aggTrade},\code{bookTicker},\code{depth},\code{kline},\code{miniTicker},\code{ticker},\code{trade}.}
 
@@ -224,6 +241,8 @@ Get a stream.
 \item{\code{interval}}{time interval, can be \verb{1s},\verb{1m},\verb{3m},\verb{5m},\verb{15m},\verb{30m},\verb{1h},\verb{2h},\verb{4h},\verb{6h},\verb{12h},\verb{1d},\verb{3d},\verb{1w},\verb{1M}.}
 
 \item{\code{update_speed}}{update speed in millisecond, for \code{spot} api \verb{1000ms}. For others apis \verb{500ms}.}
+
+\item{\code{id}}{Numeric stream id. If supplied, \code{pair}, \code{subscription}, \code{interval}, and \code{update_speed} are ignored.}
 }
 \if{html}{\out{</div>}}
 }
@@ -247,6 +266,8 @@ Get the info of all the streams opened.
 \item{\code{interval}}{time interval, can be \verb{1s},\verb{1m},\verb{3m},\verb{5m},\verb{15m},\verb{30m},\verb{1h},\verb{2h},\verb{4h},\verb{6h},\verb{12h},\verb{1d},\verb{3d},\verb{1w},\verb{1M}.}
 
 \item{\code{update_speed}}{update speed in millisecond, for \code{spot} api \verb{1000ms}. For others apis \verb{500ms}.}
+
+\item{\code{id}}{Numeric stream id. If supplied, \code{pair}, \code{subscription}, \code{interval}, and \code{update_speed} are ignored.}
 }
 \if{html}{\out{</div>}}
 }

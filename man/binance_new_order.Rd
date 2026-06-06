@@ -63,7 +63,23 @@ Can be specified a stop price or a trailing delta, if specified both will be use
 
 \item{quiet}{Logical. Default is \code{FALSE}. If \code{TRUE} suppress messages and warnings.}
 }
+\value{
+For live orders, a \code{\link[tibble]{tibble}} with order details.
+For test orders, returns invisibly after the Binance test endpoint responds.
+}
 \description{
 Send in a new order in spot market.
+}
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+binance_credentials("api-key", "api-secret")
+binance_new_order(
+  pair = "BTCUSDT",
+  side = "BUY",
+  type = "MARKET",
+  quantity = 0.001,
+  test = TRUE
+)
+\dontshow{\}) # examplesIf}
 }
 \keyword{TradingEndpoints}

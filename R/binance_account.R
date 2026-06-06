@@ -3,6 +3,10 @@
 #' Get current general Binance account information.
 #' 
 #' @return A \code{\link[tibble]{tibble}}.
+#'
+#' @examplesIf interactive()
+#' binance_credentials("api-key", "api-secret")
+#' binance_account_info()
 #' 
 #' @keywords AccountEndpoints
 #' @rdname binance_account_info
@@ -29,6 +33,10 @@ binance_account_info <- function() {
 #' Get current balances of the connected account.
 #' 
 #' @return A \code{\link[tibble]{tibble}}.
+#'
+#' @examplesIf interactive()
+#' binance_credentials("api-key", "api-secret")
+#' binance_account_balance()
 #' 
 #' @keywords AccountEndpoints
 #' @rdname binance_account_balance
@@ -61,6 +69,10 @@ binance_account_balance <- function() {
 #' @inheritParams binance_depth 
 #'
 #' @return A \code{\link[tibble]{tibble}}.
+#'
+#' @examplesIf interactive()
+#' binance_credentials("api-key", "api-secret")
+#' binance_account_trades("BTCUSDT", limit = 100)
 #' 
 #' @keywords AccountEndpoints
 #' @rdname binance_account_trades
@@ -141,4 +153,3 @@ binance_account_trades <- function(pair, from, to, from_id, limit, quiet = FALSE
 
   return(response)
 }
-

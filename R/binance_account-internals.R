@@ -50,12 +50,12 @@ binance_key <- function(){
 
 #' Set Binance API Keys
 #' 
-#' Sets the API key and secret to interact with the Binance API
+#' Sets the API key and secret to interact with authenticated Binance API endpoints.
 #' 
-#' @param key Character. Api key. 
-#' @param secret Character. Api secret. 
+#' @param key Character scalar. API key. If missing or `NULL`, the stored key is removed.
+#' @param secret Character scalar. API secret. If missing or `NULL`, the stored secret is removed.
 #' 
-#' @return No return values, setting config in the package namespace.
+#' @return Invisibly returns `NULL` after updating credentials in the package namespace.
 #' 
 #' @examples \dontrun{
 #' # Add api keys 
@@ -75,11 +75,14 @@ binance_credentials <- function(key, secret){
     # Remove API key is key is missing or NULL
     credentials$key <- NULL
     msg <- 'Binance API key removed.'
-    cli::cli_alert_danger(msg)
+    cli::cli_alert_info(msg)
   } else {
+    if (!is.character(key) || length(key) != 1 || is.na(key) || identical(key, "")) {
+      cli::cli_abort("The {.arg key} argument must be a non-empty character scalar.")
+    }
     # Set API key 
     credentials$key <- key
-    msg <- 'Binance API key setted. Call binance_key() to view it.'
+    msg <- 'Binance API key set.'
     cli::cli_alert_success(msg)
   }
   
@@ -88,13 +91,17 @@ binance_credentials <- function(key, secret){
     # Remove API secret is secret is missing or NULL
     credentials$secret <- NULL
     msg <- 'Binance API secret removed.'
-    cli::cli_alert_danger(msg)
+    cli::cli_alert_info(msg)
   } else {
+    if (!is.character(secret) || length(secret) != 1 || is.na(secret) || identical(secret, "")) {
+      cli::cli_abort("The {.arg secret} argument must be a non-empty character scalar.")
+    }
     # Set API secret 
     credentials$secret <- secret
-    msg <- 'Binance API secret setted. Call binance_secret() to view it.'
+    msg <- 'Binance API secret set.'
     cli::cli_alert_success(msg)
   }
+  invisible(NULL)
 }
 
 #' Sign a message 

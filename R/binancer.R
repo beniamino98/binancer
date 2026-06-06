@@ -1,8 +1,16 @@
-#' @docType package
-#' @name binancer
-#' @description Wrapper for Binance REST API in R
-
-NULL
+#' binancer: Binance cryptocurrency data tools
+#'
+#' @description
+#' Tools for retrieving cryptocurrency market data from Binance REST endpoints,
+#' Binance Vision public archive files, and Binance WebSocket streams. Authenticated
+#' account and order helpers require credentials supplied by the user with
+#' [binance_credentials()].
+#'
+#' @importFrom R6 R6Class
+#' @importFrom tibble tibble
+#' @importFrom websocket WebSocket
+#' @keywords internal
+"_PACKAGE"
 
 binance <- new.env()
 

@@ -34,20 +34,39 @@
 #' @param test Logical. If `TRUE`, the default, the order will be a test order.  
 #' @param quiet Logical. Default is `FALSE`. If `TRUE` suppress messages and warnings. 
 #'
+#' @return For live orders, a \code{\link[tibble]{tibble}} with order details.
+#' For test orders, returns invisibly after the Binance test endpoint responds.
+#'
+#' @examplesIf interactive()
+#' binance_credentials("api-key", "api-secret")
+#' binance_new_order(
+#'   pair = "BTCUSDT",
+#'   side = "BUY",
+#'   type = "MARKET",
+#'   quantity = 0.001,
+#'   test = TRUE
+#' )
+#'
 #' @keywords TradingEndpoints
 #' @rdname binance_new_order
 #' @name binance_new_order
 #' @export
 binance_new_order <- function(pair, side, type, time_in_force, quantity, price, stop_price, trailing_delta, iceberg_qty, test = TRUE, quiet = FALSE) {
   
-  side <- match.arg(side, choices = c('SELL', 'BUY'))
+  if (missing(pair) || is.null(pair)) {
+    cli::cli_abort("The {.arg pair} argument is required.")
+  }
+  pair <- toupper(pair)
   
+  if (missing(side) || is.null(side)) {
+    cli::cli_abort("The {.arg side} argument is required.")
+  }
+  side <- match.arg(toupper(side), choices = c('SELL', 'BUY'))
+  av_type <- c('MARKET', 'LIMIT', 'LIMIT_MAKER', 'STOP_LOSS', 'STOP_LOSS_LIMIT', 'TAKE_PROFIT', 'TAKE_PROFIT_LIMIT')
+
   # Check `quantity` arguments 
   if (missing(quantity) || is.null(quantity)) {
-    if (!quiet) {
-      msg <- paste0('A `quantity` must be specified to execute the trade.')
-      cli::cli_abort(msg)
-    }
+    cli::cli_abort("The {.arg quantity} argument is required.")
   }
   
   # Check "type" argument 
@@ -58,8 +77,7 @@ binance_new_order <- function(pair, side, type, time_in_force, quantity, price, 
       cli::cli_alert_warning(msg)
     }
   } else {
-    av_type <- c('MARKET', 'LIMIT', 'LIMIT_MAKER', 'STOP_LOSS', 'STOP_LOSS_LIMIT', 'TAKE_PROFIT', 'TAKE_PROFIT_LIMIT')
-    type <- match.arg(type, choices = av_type)
+    type <- match.arg(toupper(type), choices = av_type)
   }
   
   # Check that "price" is specified 
@@ -99,6 +117,9 @@ binance_new_order <- function(pair, side, type, time_in_force, quantity, price, 
   
   # Check "quantity" argument 
   if (!missing(quantity) && !is.null(quantity)) {
+    if (!is.numeric(quantity) || length(quantity) != 1 || is.na(quantity) || quantity <= 0) {
+      cli::cli_abort("The {.arg quantity} argument must be a positive numeric scalar.")
+    }
     query$quantity <- quantity 
   } 
   
@@ -153,7 +174,7 @@ binance_new_order <- function(pair, side, type, time_in_force, quantity, price, 
   if (!missing(stop_price) && !is.null(stop_price)) {
     
     minPrice <- filters$PRICE_FILTER$minPrice
-    stopifnot(price >= minPrice)
+    stopifnot(stop_price >= minPrice)
     
     if (filters$PRICE_FILTER$maxPrice > 0) {
       stopifnot(stop_price <= filters$PRICE_FILTER$maxPrice)
@@ -200,6 +221,7 @@ binance_new_order <- function(pair, side, type, time_in_force, quantity, price, 
     } else {
       message('TEST: ', ord$msg)
     }
+    return(invisible(ord))
   } else {
     
     ord <- binance_query(path = "order", method = 'POST', query = query, sign = TRUE)
@@ -209,7 +231,7 @@ binance_new_order <- function(pair, side, type, time_in_force, quantity, price, 
     } else {
       ord <- dplyr::bind_rows(ord)
       ord <- binance_formatter(ord)
-      msg <- paste0(side, " order [", ord$order_id, "]", "sumbitted at ", ord$transact_time)
+      msg <- paste0(side, " order [", ord$order_id, "]", " submitted at ", ord$transact_time)
       cli::cli_alert_success(msg)
     }
     return(ord)
@@ -223,6 +245,12 @@ binance_new_order <- function(pair, side, type, time_in_force, quantity, price, 
 #' @param pair Character. Trading pair, e.g. `"BTCUSDT"`.
 #' @param order_id Numeric. Order id that uniquely identify the trade. 
 #' @param client_order_id Numeric. Client order id that uniquely identify the trade. 
+#'
+#' @return A \code{\link[tibble]{tibble}} with order details.
+#'
+#' @examplesIf interactive()
+#' binance_credentials("api-key", "api-secret")
+#' binance_get_order(pair = "BTCUSDT", order_id = 123456)
 #' 
 #' @keywords TradingEndpoints
 #' @rdname binance_get_order
@@ -230,9 +258,14 @@ binance_new_order <- function(pair, side, type, time_in_force, quantity, price, 
 #' @export
 binance_get_order <- function(pair, order_id, client_order_id) {
   
-  stopifnot(!missing(order_id) | !missing(client_order_id))
+  if (missing(pair) || is.null(pair)) {
+    cli::cli_abort("The {.arg pair} argument is required.")
+  }
+  if (missing(order_id) && missing(client_order_id)) {
+    cli::cli_abort("Either {.arg order_id} or {.arg client_order_id} must be supplied.")
+  }
   
-  query <- list(symbol = pair)
+  query <- list(symbol = toupper(pair))
   
   if (!missing(order_id)) {
     query$orderId = order_id
@@ -255,6 +288,12 @@ binance_get_order <- function(pair, order_id, client_order_id) {
 #' @param pair Character. Trading pair, e.g. `"BTCUSDT"`.
 #' @param order_id Numeric. Order id that uniquely identify the trade. 
 #' @param client_order_id Numeric. Client order id that uniquely identify the trade.
+#'
+#' @return A \code{\link[tibble]{tibble}} with canceled order details.
+#'
+#' @examplesIf interactive()
+#' binance_credentials("api-key", "api-secret")
+#' binance_cancel_order(pair = "BTCUSDT", order_id = 123456)
 #' 
 #' @keywords TradingEndpoints
 #' @rdname binance_cancel_order
@@ -262,9 +301,14 @@ binance_get_order <- function(pair, order_id, client_order_id) {
 #' @export
 binance_cancel_order <- function(pair, order_id, client_order_id) {
   
-  stopifnot(!missing(order_id) | !missing(client_order_id))
+  if (missing(pair) || is.null(pair)) {
+    cli::cli_abort("The {.arg pair} argument is required.")
+  }
+  if (missing(order_id) && missing(client_order_id)) {
+    cli::cli_abort("Either {.arg order_id} or {.arg client_order_id} must be supplied.")
+  }
   
-  query <- list(symbol = pair)
+  query <- list(symbol = toupper(pair))
   
   if (!missing(order_id)) {
     query$orderId = order_id
@@ -282,4 +326,3 @@ binance_cancel_order <- function(pair, order_id, client_order_id) {
   
   return(ord)
 }
-

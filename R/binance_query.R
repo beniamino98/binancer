@@ -11,7 +11,7 @@
 #'  
 #' @param path Character vector. API path, `NULL` or `NA` elements will be excluded. 
 #' @param query Named list. Query parameters for the API call, `NULL` or `NA` elements will be excluded. 
-#' @param method Character. A method between \code{"\link[httr]{GET}"}, \code{"\link[httr]{POST}"} and \code{"\link[httr]{DELETE}"}.
+#' @param method Character. A method between \code{"\link[httr]{GET}"}, \code{"\link[httr]{POST}"}, \code{"\link[httr]{PUT}"} and \code{"\link[httr]{DELETE}"}.
 #' @param use_base_path Logical. When `TRUE`, the default, to `path` argument will be added a `base_bath` based on the selected API. 
 #' Available `base_bath` are:
 #'   - `"spot"`: base path is `"api/v3"`.
@@ -23,7 +23,7 @@
 #' @param sign Logical. Default is `FALSE`. `TRUE` if signature is required. 
 #' @param quiet Logical. Default is `FALSE`. If `TRUE` suppress messages and warnings. 
 #' @return An R object parsed as character. See more on \code{\link[httr]{content}}
-#' @examples 
+#' @examplesIf interactive()
 #' # Execute a call to spot API with base path
 #' binance_query(api = "spot", 
 #'               path = "time", 
@@ -107,6 +107,13 @@ binance_query <- function(api, path = NULL, query = list(), method = 'GET', sign
     method = method,
     query = query,
     config = config)
+  if (inherits(response, "error")) {
+    msg <- conditionMessage(response)
+    if (!quiet) {
+      cli::cli_warn(c("Binance request failed.", "x" = msg))
+    }
+    return(structure(list(code = NA_integer_, msg = msg), class = "binance_api_error"))
+  }
 
   # Http status code 
   api_status <- httr::status_code(response)
@@ -143,7 +150,7 @@ binance_query <- function(api, path = NULL, query = list(), method = 'GET', sign
 #' @return Raw object 
 #' @keywords internals
 #' @noRd
-binance_api_query <- function(base, path, method, query = list(), body = NULL, config = config(), retry = method == 'GET', retries = 0) {
+binance_api_query <- function(base, path, method, query = list(), body = NULL, config = httr::config(), retry = method == 'GET', retries = 0) {
   
   method <- match.arg(method, choices = c('GET', 'POST', 'PUT', 'DELETE'))
   METHOD <- utils::getFromNamespace(method, ns = 'httr')

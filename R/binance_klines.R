@@ -46,10 +46,9 @@
 #'   - `taker_buy`: Numeric, taker buy volume in asset value.
 #'   - `taker_buy_quote`: Numeric, taker buy volume in quote asset value.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' # Get 1-hour OHLC data for BTCUSDT in the spot market
 #' binance_klines(pair = "BTCUSDT", api = "spot", interval = "1h")
-#'
 #' # Get 30-minute OHLC data for BTCUSDT in USD-m market
 #' # Perpetual contracts 
 #' binance_klines(pair = "BTCUSDT", api = "fapi", interval = "30m", uiKlines = FALSE)
@@ -205,6 +204,7 @@ binance_klines_spot <- function(pair, interval, from , to, uiKlines = FALSE, as_
     api_path <- ifelse(uiKlines, "uiKlines", "klines")
     api_query <- list(symbol = pair, startTime = NULL, interval = interval, endTime = end_time, limit = 1000)
     new_data <- binance_query(api = "spot", path = api_path, query = api_query)
+
     # Break if new_data is empty 
     if (purrr::is_empty(new_data)) {
       break
@@ -463,7 +463,5 @@ binance_klines_eapi <- function(pair, interval, from, to, as_xts = FALSE, quiet 
   
   return(response)
 }
-
-
 
 

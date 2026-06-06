@@ -35,6 +35,7 @@ A \code{\link[tibble]{tibble}} with 7 columns:
 Retrieve a snapshot of the order book for a trading pair.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get the order book for BTCUSDT
 binance_depth(pair = "BTCUSDT", api = "spot")
 binance_depth(pair = "BTCUSDT", api = "fapi")
@@ -44,6 +45,6 @@ binance_depth(pair = "BTCUSD_PERP", api = "dapi")
 
 # Get the order book for a put option on BTC 
 binance_depth(pair = "BTC-240628-30000-P", api = "eapi")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

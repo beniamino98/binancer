@@ -12,4 +12,10 @@ A \code{\link[tibble]{tibble}}.
 \description{
 Get current balances of the connected account.
 }
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+binance_credentials("api-key", "api-secret")
+binance_account_balance()
+\dontshow{\}) # examplesIf}
+}
 \keyword{AccountEndpoints}

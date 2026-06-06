@@ -35,6 +35,7 @@ open, high, low, close prices, volume, and more.
 Get 24-hour ticker statistics for a specified trading pair from the selected reference API.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get full 24-hour ticker for all pairs
 binance_ticker24h(api = "spot")
 binance_ticker24h(api = "fapi")
@@ -55,6 +56,6 @@ binance_ticker24h(pair = "BTCUSD_PERP", api = "dapi")
 
 # Get 24-hour ticker for a put option on BTCUSDT
 binance_ticker24h(pair = "BTC-240628-30000-P", api = "eapi")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

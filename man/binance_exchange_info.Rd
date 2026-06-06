@@ -35,6 +35,7 @@ A \code{\link[tibble]{tibble}}.
 Obtain market information and available trading pairs.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get all pairs in all markets
 binance_exchange_info(api = "spot", permissions = "all", pair = NULL)
 
@@ -68,6 +69,6 @@ binance_exchange_info(api = "dapi")
 
 # Get all pairs in options markets
 binance_exchange_info(api = "eapi")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{generalEndpoints}

@@ -1,4 +1,4 @@
-#' Symbol Trading Day TIcker
+#' Symbol Trading Day Ticker
 #' 
 #' Price change statistics for a trading day.
 #' 
@@ -22,10 +22,10 @@
 #'   - `volume_quote`: Numeric, volume in terms of quote asset.
 #'   - `trades`: Numeric, number of trades
 #'                  
-#' @examples
+#' @examplesIf interactive()
 #' # Get day ticker for BTCUSDT
 #' binance_ticker_day("BTCUSDT")
-
+#'
 #' @keywords marketEndpoints
 #' @rdname binance_ticker_day
 #' @name binance_ticker_day
@@ -66,4 +66,3 @@ binance_ticker_day <- function(pair, time_zone = 0, quiet = FALSE){
   attr(response, "ip_weight") <- 4
   return(response)
 }
-

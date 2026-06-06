@@ -2,6 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
-.Rbuildignore
+*.Rcheck/
+..Rcheck/
+*.tar.gz
+.DS_Store
 api-tests/
-tests/
+docs/

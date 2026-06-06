@@ -12,4 +12,10 @@ A \code{\link[tibble]{tibble}}.
 \description{
 Get current general Binance account information.
 }
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+binance_credentials("api-key", "api-secret")
+binance_account_info()
+\dontshow{\}) # examplesIf}
+}
 \keyword{AccountEndpoints}

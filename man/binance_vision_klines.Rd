@@ -39,6 +39,7 @@ A \code{\link[tibble]{tibble}}.
 Historical Kline data for a trading pair from the Binance Vision database.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 pair <- "BTCUSDT"
 api <- "spot"
@@ -50,6 +51,6 @@ binance_vision_klines(pair, api = "fapi",
                       interval = interval, from = from, to = from)
 binance_vision_klines("BTCUSD_PERP", api = "dapi", 
                       interval = interval, from = from, to = from)
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{binanceVision}

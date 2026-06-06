@@ -5,6 +5,7 @@ binance_ws_cleaner <- function(data){
 }
 
 # Cleaner for websocket "aggTrade" endpoint
+#' @export
 binance_ws_cleaner.aggTrade <- function(data){
 
   if (purrr::is_empty(data)) {
@@ -30,6 +31,7 @@ binance_ws_cleaner.aggTrade <- function(data){
 }
 
 # Cleaner for websocket "trade" endpoint
+#' @export
 binance_ws_cleaner.trade <- function(data){
 
   if (purrr::is_empty(data)) {
@@ -55,6 +57,7 @@ binance_ws_cleaner.trade <- function(data){
 }
 
 # Cleaner for websocket "miniticker" endpoint
+#' @export
 binance_ws_cleaner.miniTicker <- function(data){
 
   if (purrr::is_empty(data)) {
@@ -84,6 +87,7 @@ binance_ws_cleaner.miniTicker <- function(data){
 }
 
 # Cleaner for websocket "ticker" endpoint
+#' @export
 binance_ws_cleaner.ticker <- function(data){
 
   if (purrr::is_empty(data)) {
@@ -131,6 +135,7 @@ binance_ws_cleaner.ticker <- function(data){
 }
 
 # Cleaner for websocket "bookTicker" endpoint
+#' @export
 binance_ws_cleaner.bookTicker <- function(data){
 
   if (purrr::is_empty(data)) {
@@ -156,6 +161,7 @@ binance_ws_cleaner.bookTicker <- function(data){
 }
 
 # Cleaner for websocket "kline" endpoint
+#' @export
 binance_ws_cleaner.kline <- function(data){
   
   if (purrr::is_empty(data)) {
@@ -194,6 +200,7 @@ binance_ws_cleaner.kline <- function(data){
 }
 
 # Cleaner for websocket "binance_ws_cleaner.continuousKline" endpoint
+#' @export
 binance_ws_cleaner.continuousKline <- function(data){
   
   if (purrr::is_empty(data)) {
@@ -233,6 +240,7 @@ binance_ws_cleaner.continuousKline <- function(data){
 }
 
 # Cleaner for websocket "markPrice" endpoint
+#' @export
 binance_ws_cleaner.markPrice <- function(data){
 
   if (purrr::is_empty(data)) {
@@ -260,6 +268,7 @@ binance_ws_cleaner.markPrice <- function(data){
 }
 
 # Cleaner for websocket "forceOrder" endpoint
+#' @export
 binance_ws_cleaner.forceOrder <- function(data){
   
   if (purrr::is_empty(data)) {
@@ -284,6 +293,7 @@ binance_ws_cleaner.forceOrder <- function(data){
 }
 
 # Cleaner for websocket "depth" endpoint
+#' @export
 binance_ws_cleaner.depth <- function(data){
   
   if (purrr::is_empty(data)) {
@@ -331,6 +341,7 @@ binance_ws_structure <- function(data_after, data_before = NULL){
 }
 
 # Structure kline data to avoid un-closed candles
+#' @export
 binance_ws_structure.kline <- function(data_after, data_before = NULL){
   
   if (purrr::is_empty(data_before)) {
@@ -353,6 +364,7 @@ binance_ws_structure.kline <- function(data_after, data_before = NULL){
 }
 
 # Structure order book data updating the levels
+#' @export
 binance_ws_structure.depth <- function(data_after, data_before = NULL){
 
   if (purrr::is_empty(data_before)) {
@@ -398,6 +410,7 @@ binance_ws_structure.depth <- function(data_after, data_before = NULL){
   return(df_out)
 }
 
+#' @export
 binance_ws_structure.trade <- function(data_after, data_before = NULL){
   
   if (purrr::is_empty(data_before)) {
@@ -415,6 +428,7 @@ binance_ws_structure.trade <- function(data_after, data_before = NULL){
   return(merge_data)
 }
 
+#' @export
 binance_ws_structure.aggTrade <- function(data_after, data_before = NULL){
   
   if (purrr::is_empty(data_before)) {
@@ -432,6 +446,7 @@ binance_ws_structure.aggTrade <- function(data_after, data_before = NULL){
   return(merge_data)
 }
 
+#' @export
 binance_ws_structure.bookTicker <- function(data_after, data_before = NULL){
   
   if (purrr::is_empty(data_before)) {
@@ -449,6 +464,7 @@ binance_ws_structure.bookTicker <- function(data_after, data_before = NULL){
   return(merge_data)
 }
 
+#' @export
 binance_ws_structure.ticker <- function(data_after, data_before = NULL){
   
   if (purrr::is_empty(data_before)) {
@@ -466,6 +482,7 @@ binance_ws_structure.ticker <- function(data_after, data_before = NULL){
   return(merge_data)
 }
 
+#' @export
 binance_ws_structure.miniTicker <- function(data_after, data_before = NULL){
   
   if (purrr::is_empty(data_before)) {
@@ -483,6 +500,7 @@ binance_ws_structure.miniTicker <- function(data_after, data_before = NULL){
   return(merge_data)
 }
 
+#' @export
 binance_ws_structure.forceOrder <- function(data_after, data_before = NULL){
   
   if (purrr::is_empty(data_before)) {
@@ -734,4 +752,3 @@ binance_ws_subscription <- function(pair, api = "spot", subscription, interval, 
                                    status = "SUBSCRIBED")
   return(ws_subscription)
 }
-

@@ -35,6 +35,7 @@ A \code{\link[tibble]{tibble}} with 7 columns:
 Get the last 1000 trades for a trading pair.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get last 1000 trades for BTCUSDT
 binance_last_trades(pair = "BTCUSDT", api = "spot")
 binance_last_trades(pair = "BTCUSDT", api = "fapi")
@@ -44,6 +45,6 @@ binance_last_trades(pair = "BTCUSD_PERP", api = "dapi")
 
 # Get last 1000 trades for a put option on BTC
 binance_last_trades(pair = "BTC-240628-30000-P", api = "eapi")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

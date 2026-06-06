@@ -1,0 +1,13 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.DS_Store$
+^.*\.DS_Store$
+^api-tests$
+^docs$
+^binancer_0[.]1[.]0[.]pdf$
+^data/binance_env[.]RData$
+^CRAN-SUBMISSION$
+^cran-comments[.]md$
+^.*[.]Rcheck$
+^[.][.]Rcheck$
+^[^/]+[.]tar[.]gz$

@@ -20,7 +20,7 @@
 #' @return A \code{\link[tibble]{tibble}} with 13 columns containing 24-hour ticker statistics, including:
 #' open, high, low, close prices, volume, and more.
 #'                  
-#' @examples
+#' @examplesIf interactive()
 #' # Get full 24-hour ticker for all pairs
 #' binance_ticker24h(api = "spot")
 #' binance_ticker24h(api = "fapi")
@@ -128,4 +128,3 @@ binance_ticker24h <- function(pair, api, type, quiet = FALSE){
   
   return(response)
 }
-

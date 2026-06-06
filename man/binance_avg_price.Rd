@@ -7,6 +7,8 @@
 binance_avg_price(pair, quiet = FALSE)
 }
 \arguments{
+\item{pair}{Character. Trading pair, e.g. \code{"BTCUSDT"}.}
+
 \item{quiet}{Logical. Default is \code{FALSE}. If \code{TRUE} suppress messages and warnings.}
 }
 \value{
@@ -20,10 +22,11 @@ The IP weight for this API call is 2.
 This function implements the endpoint \href{https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#current-average-price}{api/v3/avgPrice} of spot API.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Average price for BTCUSDT 
 binance_avg_price("BTCUSDT")
 # Average price for BNBUSDT 
 binance_avg_price("BNBUSDT")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

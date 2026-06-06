@@ -60,6 +60,7 @@ A \code{\link[tibble]{tibble}} with 5 columns:
 Get the historical open interest for a trading pair. The data are only available for the last 30 days.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Historical open interest for BTCUSDT
 binance_open_interest(pair = "BTCUSDT", 
                       api = "fapi", 
@@ -74,6 +75,6 @@ binance_open_interest(pair = "BTCUSD",
                       interval = "1d", 
                       from = Sys.time()-lubridate::days(15),
                       to = NULL)
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

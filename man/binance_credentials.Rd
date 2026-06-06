@@ -7,15 +7,15 @@
 binance_credentials(key, secret)
 }
 \arguments{
-\item{key}{Character. Api key.}
+\item{key}{Character scalar. API key. If missing or \code{NULL}, the stored key is removed.}
 
-\item{secret}{Character. Api secret.}
+\item{secret}{Character scalar. API secret. If missing or \code{NULL}, the stored secret is removed.}
 }
 \value{
-No return values, setting config in the package namespace.
+Invisibly returns \code{NULL} after updating credentials in the package namespace.
 }
 \description{
-Sets the API key and secret to interact with the Binance API
+Sets the API key and secret to interact with authenticated Binance API endpoints.
 }
 \examples{
 \dontrun{

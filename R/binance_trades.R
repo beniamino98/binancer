@@ -25,7 +25,7 @@
 #'   - `first_id`: Integer, first trade id for aggregation.
 #'   - `last_id`: Integer, last trade id for aggregation.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' # Get trades in last 10 minutes for BTCUSDT
 #' binance_trades(pair = "BTCUSDT", api = "spot", from = NULL, to = NULL)
 #' 

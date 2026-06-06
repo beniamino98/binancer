@@ -43,6 +43,7 @@ A \code{\link[tibble]{tibble}} with 9 columns:
 Get aggregated historical trades data for a trading pair.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get trades in last 10 minutes for BTCUSDT
 binance_trades(pair = "BTCUSDT", api = "spot", from = NULL, to = NULL)
 
@@ -54,6 +55,6 @@ binance_trades(pair = "BTCUSDT", api = "fapi", from = NULL, to = NULL)
 
 # Get trades in last 10 minutes for BTCUSD_PERP
 binance_trades(pair = "BTCUSD_PERP", api = "dapi", from = NULL, to = NULL)
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

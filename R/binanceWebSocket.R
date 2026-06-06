@@ -4,7 +4,19 @@
 #' Binance web socket description
 #' 
 #' @details 
-#' Binance web socket details
+#' Creates a WebSocket client for Binance stream subscriptions.
+#'
+#' @return An R6 generator for `binanceWebSocket` objects.
+#'
+#' @examplesIf interactive()
+#' ws <- binanceWebSocket$new(
+#'   pair = "BTCUSDT",
+#'   api = "spot",
+#'   subscription = "kline",
+#'   interval = "1m"
+#' )
+#' ws$connect()
+#' ws$close()
 #' 
 #' @export
 binanceWebSocket <- R6::R6Class("binanceWebSocket", 
@@ -12,6 +24,7 @@ binanceWebSocket <- R6::R6Class("binanceWebSocket",
                                   #' @description
                                   #' Initialize a `binanceWebSocket` object.
                                   #' @param pair Character. Trading pair, e.g. `"BTCUSDT"`.
+                                  #' @param api Character. Reference API. Available options are `"spot"` and `"fapi"`.
                                   #' @param subscription type of subscription, can be `aggTrade`,`bookTicker`,`depth`,`kline`,`miniTicker`,`ticker`,`trade`.
                                   #' @param interval time interval, can be `1s`,`1m`,`3m`,`5m`,`15m`,`30m`,`1h`,`2h`,`4h`,`6h`,`12h`,`1d`,`3d`,`1w`,`1M`.
                                   #' @param update_speed update speed in millisecond, for `spot` api `1000ms`. For others apis `500ms`.
@@ -335,6 +348,7 @@ binanceWebSocket <- R6::R6Class("binanceWebSocket",
                                   #' @param subscription type of subscription, can be `aggTrade`,`bookTicker`,`depth`,`kline`,`miniTicker`,`ticker`,`trade`.
                                   #' @param interval time interval, can be `1s`,`1m`,`3m`,`5m`,`15m`,`30m`,`1h`,`2h`,`4h`,`6h`,`12h`,`1d`,`3d`,`1w`,`1M`.
                                   #' @param update_speed update speed in millisecond, for `spot` api `1000ms`. For others apis `500ms`.
+                                  #' @param id Numeric stream id. If supplied, `pair`, `subscription`, `interval`, and `update_speed` are ignored.
                                   get_stream = function(pair, subscription, interval, update_speed, id){
                                     if (missing(id) || is.null(id)){
                                       stream_info <- binance_ws_subscription(
@@ -368,6 +382,7 @@ binanceWebSocket <- R6::R6Class("binanceWebSocket",
                                   #' @param subscription type of subscription, can be `aggTrade`,`bookTicker`,`depth`,`kline`,`miniTicker`,`ticker`,`trade`.
                                   #' @param interval time interval, can be `1s`,`1m`,`3m`,`5m`,`15m`,`30m`,`1h`,`2h`,`4h`,`6h`,`12h`,`1d`,`3d`,`1w`,`1M`.
                                   #' @param update_speed update speed in millisecond, for `spot` api `1000ms`. For others apis `500ms`.
+                                  #' @param id Numeric stream id. If supplied, `pair`, `subscription`, `interval`, and `update_speed` are ignored.
                                   get_info = function(pair, subscription, interval, update_speed, id){
                                     if (missing(id) || is.null(id)){
                                       stream_info <- binance_ws_subscription(

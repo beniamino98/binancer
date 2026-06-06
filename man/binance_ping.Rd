@@ -27,6 +27,7 @@ Check the connection to the Binance API.
 The IP weight for this API call is 1 for all the APIs.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Test connection to spot api
 binance_ping("spot")
 # Test connection to futures usd-m api
@@ -35,6 +36,6 @@ binance_ping("fapi")
 binance_ping("dapi")
 # Test connection to options api
 binance_ping("eapi")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{generalEndpoints}

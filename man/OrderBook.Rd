@@ -33,16 +33,17 @@ Create and structure an order book from depth data.
 }
 \examples{
  
-# Generate an order book for BTCUSDT 
-depth_data <- binance_depth("BTCUSDT", api = "spot")
-depth <- 0.01
-best_ask <- min(depth_data[depth_data$side == "ASK",]$price)
-best_bid <- max(depth_data[depth_data$side == "BID",]$price)
+# Generate an order book from a local depth snapshot.
+depth_data <- data.frame(
+  price = c(100, 99, 101, 102),
+  quantity = c(1.5, 2, 1, 0.5),
+  side = c("BID", "BID", "ASK", "ASK")
+)
 OrderBook(data = depth_data, 
-          min_price = best_bid*(1 - depth), 
-          max_price = best_ask*(1 + depth), 
-          levels = 10, 
-          trades = NULL, 
+          min_price = 99,
+          max_price = 103,
+          levels = 5,
+          trades = NULL,
           as_datatable = FALSE)
 
 }

@@ -18,7 +18,7 @@
 #' 
 #' @return A \code{\link[tibble]{tibble}}.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' # Get all pairs in all markets
 #' binance_exchange_info(api = "spot", permissions = "all", pair = NULL)
 #'

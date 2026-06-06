@@ -11,7 +11,7 @@
 #' @return A \code{\link[=POSIXt-class]{POSIXt}} object. The server time for the reference API.
 #' @details The IP weight for this API call is 1.
 #' 
-#' @examples
+#' @examplesIf interactive()
 #' # Get the server time
 #' binance_time("spot")
 #' binance_time("fapi")

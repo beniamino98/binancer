@@ -28,7 +28,7 @@
 #'   - `open_interest`: Numeric, open interest in base currency.
 #'   - `open_interest_usd`: Numeric, open interest in USD.
 #'   
-#' @examples
+#' @examplesIf interactive()
 #' # Historical open interest for BTCUSDT
 #' binance_open_interest(pair = "BTCUSDT", 
 #'                       api = "fapi", 
@@ -177,4 +177,3 @@ binance_open_interest <- function(pair, api, interval, from, to, contract_type, 
   
   return(response)
 }
-

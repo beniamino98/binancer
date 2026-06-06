@@ -40,6 +40,7 @@ A \code{\link[=data.frame-class]{data.frame}} with 8 columns:
 Get best ASK and BID price and quantities on the order book for a pair or a list of pairs.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get book ticker for all pairs
 binance_book_ticker(api = "spot")
 binance_book_ticker(api = "fapi")
@@ -47,6 +48,6 @@ binance_book_ticker(api = "dapi")
 
 # Get book ticker for BTCUSDT
 binance_book_ticker(pair = "BTCUSDT", api = "spot")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

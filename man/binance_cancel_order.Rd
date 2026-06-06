@@ -13,7 +13,16 @@ binance_cancel_order(pair, order_id, client_order_id)
 
 \item{client_order_id}{Numeric. Client order id that uniquely identify the trade.}
 }
+\value{
+A \code{\link[tibble]{tibble}} with canceled order details.
+}
 \description{
 Cancel an active order.
+}
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+binance_credentials("api-key", "api-secret")
+binance_cancel_order(pair = "BTCUSDT", order_id = 123456)
+\dontshow{\}) # examplesIf}
 }
 \keyword{TradingEndpoints}

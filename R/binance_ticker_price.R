@@ -24,7 +24,7 @@
 #'   - `ask_quantity`: Numeric, quantity at best ASK price.
 #'   - `bid_quantity`: Numeric, quantity at best BID price.
 #'                  
-#' @examples
+#' @examplesIf interactive()
 #' # Get book ticker for all pairs
 #' binance_ticker_price(api = "spot")
 #' binance_ticker_price(api = "fapi")

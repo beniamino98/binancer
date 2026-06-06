@@ -2,7 +2,7 @@
 % Please edit documentation in R/binance_ticker_day.R
 \name{binance_ticker_day}
 \alias{binance_ticker_day}
-\title{Symbol Trading Day TIcker}
+\title{Symbol Trading Day Ticker}
 \usage{
 binance_ticker_day(pair, time_zone = 0, quiet = FALSE)
 }
@@ -36,7 +36,9 @@ A \code{\link[tibble]{tibble}} with 14 columns:
 Price change statistics for a trading day.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get day ticker for BTCUSDT
 binance_ticker_day("BTCUSDT")
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

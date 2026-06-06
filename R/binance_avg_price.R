@@ -2,6 +2,7 @@
 #'
 #' Get the average price of a trading pair in the last 5 minutes. 
 #'
+#' @param pair Character. Trading pair, e.g. `"BTCUSDT"`.
 #' @inheritParams binance_query 
 #' 
 #' @details The IP weight for this API call is 2.
@@ -9,7 +10,7 @@
 #' 
 #' @return Numeric. Average price in last 5 minutes. 
 #' 
-#' @examples 
+#' @examplesIf interactive()
 #' # Average price for BTCUSDT 
 #' binance_avg_price("BTCUSDT")
 #' # Average price for BNBUSDT 

@@ -51,6 +51,7 @@ The IP weight for this API call is 1, and the data source is memory.
 The historical open interest data are only available for the last 30 days.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Statistics in USD-m market     
 binance_futures_stats(pair = "BTCUSDT", 
                       api = "fapi", 
@@ -94,5 +95,6 @@ binance_futures_stats(pair = "BTCUSD",
                       interval = "1d", 
                       indicator = "topLongShortAccountRatio", 
                       from = Sys.Date()-2) 
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

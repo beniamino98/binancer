@@ -87,9 +87,9 @@ A \code{\link[tibble]{tibble}} with 13 columns:
 Get klines/candlestick data for a trading pair.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get 1-hour OHLC data for BTCUSDT in the spot market
 binance_klines(pair = "BTCUSDT", api = "spot", interval = "1h")
-
 # Get 30-minute OHLC data for BTCUSDT in USD-m market
 # Perpetual contracts 
 binance_klines(pair = "BTCUSDT", api = "fapi", interval = "30m", uiKlines = FALSE)
@@ -118,6 +118,6 @@ binance_klines(pair = "BTCUSD", api = "dapi", interval = "1h",
 # Get 1-hour OHLC data for a put option on BTCUSDT.
 # Strike of 30000 and maturity on 2024-06-28.
 binance_klines(pair = "BTC-240628-30000-P", api = "eapi", interval = "1h")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}

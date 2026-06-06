@@ -27,11 +27,12 @@ Get the current server time from Binance API.
 The IP weight for this API call is 1.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get the server time
 binance_time("spot")
 binance_time("fapi")
 binance_time("dapi")
 binance_time("eapi")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{generalEndpoints}

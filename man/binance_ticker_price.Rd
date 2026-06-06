@@ -40,6 +40,7 @@ A \code{\link[tibble]{tibble}} with 8 columns:
 Get last price for a symbol or symbols.
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Get book ticker for all pairs
 binance_ticker_price(api = "spot")
 binance_ticker_price(api = "fapi")
@@ -47,6 +48,6 @@ binance_ticker_price(api = "dapi")
 
 # Get book ticker for BTCUSDT
 binance_ticker_price(pair = "BTCUSDT", api = "spot")
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{marketEndpoints}
